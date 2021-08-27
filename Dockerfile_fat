@@ -1,0 +1,20 @@
+FROM python:3.5-stretch AS build
+RUN python3 -m venv /venv
+
+ADD requirements/ /requirements/
+
+RUN  /venv/bin/pip install -r /requirements/production.txt 
+
+
+RUN mkdir /code/
+WORKDIR /code/
+ADD . /code/
+EXPOSE 8000
+
+# make sure static files are writable by uWSGI process
+RUN chown -R 1000:2000 /code/bakerydemo/media
+
+# start uWSGI, using a wrapper script to allow us to easily add more commands to container startup:
+ENTRYPOINT ["/code/docker-entrypoint.sh"]
+CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive", "--static-map", "/media/=/code/bakerydemo/media/"]
+

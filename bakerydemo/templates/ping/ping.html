@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Ping Result{% endblock %}
+
+{% block content %}
+    <h4>
+      delay: {{ delay }} ms <br />
+      error: {{ error }} <br />
+    </h4>
+{% endblock content %}
