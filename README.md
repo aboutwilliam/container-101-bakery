@@ -3,7 +3,10 @@
 
 # Docker Basic Commnad
 
-    $ docker run -dp 80:80 docker/getting-started
+    $ docker run -d -p 80:80 docker/getting-started
+    docker pull
+    docker start
+    (image name from dockerhub.com)
     $ docker image ls
     $ docker container ls
     $ docker container stop (Container ID |NAMES)
@@ -53,5 +56,7 @@
 # DockerHub
 
     $ docker login
+    $ docker tag bakeryhello/simplified  aboutwilliam/bakeryhello:latest
+    $ docker push aboutwilliam/bakeryhello:latest
     $ docker tag bakeryhello/simplified  aboutwilliam/bakeryhello:simplified.1
     $ docker push aboutwilliam/bakeryhello:simplified.1
